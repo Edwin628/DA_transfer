@@ -1,5 +1,7 @@
 package cs451.Utils;
 
+import cs451.Constants;
+
 import java.io.*;
 import java.nio.ByteBuffer;
 
@@ -12,8 +14,8 @@ public class Logger {
 
     public Logger(String dir){
         this.directory = dir;
-        this.buffer = ByteBuffer.allocate(Constant.BUFFER_SIZE);
-        this.tmp = new byte[Constant.BUFFER_SIZE];
+        this.buffer = ByteBuffer.allocate(Constants.BUFFER_SIZE);
+        this.tmp = new byte[Constants.BUFFER_SIZE];
         file = new File(directory);
         if(!file.getParentFile().exists()){
             file.getParentFile().mkdirs();//if not found, set up a new file

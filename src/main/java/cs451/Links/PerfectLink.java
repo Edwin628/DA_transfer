@@ -1,7 +1,7 @@
 package cs451.Links;
 
-import cs451.Listener.Listener;
-import cs451.Utils.Constant;
+import cs451.Constants;
+import cs451.Utils.Listener;
 import cs451.Utils.Logger;
 import cs451.Utils.Message;
 import cs451.Utils.Record;
@@ -32,7 +32,7 @@ public class PerfectLink implements Link{
 
     @Override
     public void send(Message m, String ip, int port){
-        String log = Constant.BROADCAST + " " + new String(m.payload) + "\n";
+        String log = Constants.BROADCAST + " " + new String(m.payload) + "\n";
         logger.log(log);
         try{
             stubbornLink.send(m, ip, port);
@@ -59,7 +59,7 @@ public class PerfectLink implements Link{
     }
 
     public void ack(Record record){
-        Message m = new Message(record.m.payload, Constant.ACK);
+        Message m = new Message(record.m.payload, Constants.ACK);
 //        System.out.println("send ack:" + record.i + new String(record.m.payload));
         this.stubbornLink.send(m, record.ip, record.port);
     }

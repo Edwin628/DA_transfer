@@ -1,7 +1,6 @@
 package cs451;
 
 import cs451.Links.PerfectLink;
-import cs451.Utils.Constant;
 import cs451.Utils.Logger;
 import cs451.Utils.Message;
 
@@ -74,8 +73,8 @@ public class Main {
             if (parser.myId() != destinationProcess){
                 for (Integer j = 1; j <= messageNum; j++){
                     //build message
-                    Message m = new Message(j.toString().getBytes(), Constant.SEND);
-                    perfectLink.send(m, Constant.getIpFromHosts(parser.hosts(), destinationProcess),Constant.getPortFromHosts(parser.hosts(), destinationProcess));
+                    Message m = new Message(j.toString().getBytes(), Constants.SEND);
+                    perfectLink.send(m, Constants.getIpFromHosts(parser.hosts(), destinationProcess),Constants.getPortFromHosts(parser.hosts(), destinationProcess));
                 }
             }
         }catch (FileNotFoundException e){
