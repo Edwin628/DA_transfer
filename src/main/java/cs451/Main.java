@@ -19,7 +19,7 @@ public class Main {
         //write/flush output file if necessary
         System.out.println("Writing output.");
 
-        logger.close();
+        //logger.close();
     }
 
     private static void initSignalHandlers() {

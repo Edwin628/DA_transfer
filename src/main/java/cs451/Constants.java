@@ -34,11 +34,4 @@ public class Constants {
     public static final boolean SEND = true;
     public static final boolean ACK = false;
 
-    public static final int getProcessIdFromIpAndPort(List<Host> hosts, String ip, int port){
-        for (Host host:hosts){
-            if (host.getIp().equals(ip) && host.getPort() == port)
-                return host.getId();
-        }
-        return -1;
-    }
 }

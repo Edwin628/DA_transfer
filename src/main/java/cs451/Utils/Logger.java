@@ -18,10 +18,10 @@ public class Logger {
         this.tmp = new byte[Constants.BUFFER_SIZE];
         file = new File(directory);
         if(!file.getParentFile().exists()){
-            file.getParentFile().mkdirs();//if not found, set up a new file
+            file.getParentFile().mkdirs();
         }
         try {
-             outputStream = new FileOutputStream(file); //open the file, ready to write in
+             outputStream = new FileOutputStream(file);
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }
