@@ -19,4 +19,8 @@ public class Message implements Serializable {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        return new String(this.payload).hashCode();
+    }
 }

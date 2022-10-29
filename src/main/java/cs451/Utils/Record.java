@@ -20,4 +20,8 @@ public class Record {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        return this.ip.hashCode() + this.m.hashCode() + this.port;
+    }
 }
