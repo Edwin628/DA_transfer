@@ -10,7 +10,7 @@ public class Listener implements Runnable {
     PerfectLink perfectLink;
     Logger logger;
     public boolean flag = true;
-    List hosts;
+    List<Host>  hosts;
 
     public Listener(PerfectLink perfectLink, Logger logger, List hosts){
         this.perfectLink = perfectLink;
@@ -25,8 +25,11 @@ public class Listener implements Runnable {
             if (tmp.m.flag == Constants.SEND){
                 Record record = perfectLink.deliver(tmp);
                 if (record != null) {
-//                    System.out.println("receive packet:" + tmp.i + " " + new String(tmp.m.payload));
-                    int process = Constants.getProcessIdFromIpAndPort(hosts, record.ip, record.port);
+                    int process = -1;
+                    for (Host host:hosts){
+                        if (host.getIp().equals(record.ip) && host.getPort() == record.port)
+                        process = host.getId();
+                    }
                     String log = Constants.DELIVER + " " + process + " " + new String(record.m.payload) + "\n";
                     logger.log(log);
                 }
@@ -36,6 +39,7 @@ public class Listener implements Runnable {
             }
         }
     }
+
 
     public void stop(){
         this.flag = false;
