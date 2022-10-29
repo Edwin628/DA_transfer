@@ -1,7 +1,7 @@
 package cs451.Links;
 
 import cs451.Host;
-import cs451.Utils.Constant;
+import cs451.Constants;
 import cs451.Utils.Message;
 import cs451.Utils.Record;
 
@@ -29,7 +29,7 @@ public class StubbornLink implements Link, Runnable{
     public void run(){
         long start = System.currentTimeMillis();
         try {
-            Thread.sleep(Constant.SENDINTERVAL);
+            Thread.sleep(Constants.SENDINTERVAL);
         }catch (InterruptedException e){
             e.printStackTrace();
         }
