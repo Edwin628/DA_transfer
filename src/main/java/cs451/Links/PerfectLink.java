@@ -17,6 +17,7 @@ public class PerfectLink implements Link{
     Thread tstubborn;
     Thread tlistener;
     List hosts;
+    
     public PerfectLink(int port, Logger logger, List hosts){
         this.stubbornLink = new StubbornLink(port, hosts);
         tstubborn = new Thread(this.stubbornLink);
@@ -31,7 +32,7 @@ public class PerfectLink implements Link{
 
     @Override
     public void send(Message m, String ip, int port){
-        String log = Constants.BROADCAST + " " + new String(m.payload) + "\n";
+        String log = "b " + new String(m.payload) + "\n";
         logger.log(log);
         try{
             stubbornLink.send(m, ip, port);

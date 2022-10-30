@@ -69,8 +69,7 @@ public class Main {
             System.out.println("Broadcasting and delivering messages...\n");
             if (parser.myId() != dstid){
                 for (Integer i = 1; i <= msgnum; i++){
-                    //build message
-                    Message m = new Message(i.toString().getBytes(), Constants.SEND);
+                    Message m = new Message(i.toString().getBytes(), true);
                     String ip_cur = parser.hosts().get(dstid - 1).getIp();
                     int port_cur = parser.hosts().get(dstid - 1).getPort();
                     perfectLink.send(m, ip_cur, port_cur);
@@ -80,8 +79,8 @@ public class Main {
             e.printStackTrace();
         }
 
-//         After a process finishes broadcasting,
-//         it waits forever for the delivery of messages.
+        //After a process finishes broadcasting,
+        //it waits forever for the delivery of messages.
         while (true) {
             // Sleep for 1 hour
             Thread.sleep(60 * 60 * 1000);

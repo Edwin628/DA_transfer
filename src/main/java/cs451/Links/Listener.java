@@ -30,7 +30,7 @@ public class Listener implements Runnable {
                     if (host.getIp().equals(record.ip) && host.getPort() == record.port)
                     process = host.getId();
                 }
-                String log = Constants.DELIVER + " " + process + " " + new String(record.m.payload) + "\n";
+                String log = "d " + process + " " + new String(record.m.payload) + "\n";
                 logger.log(log);
             }
         }

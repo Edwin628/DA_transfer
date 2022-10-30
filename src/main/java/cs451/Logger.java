@@ -14,8 +14,8 @@ public class Logger {
 
     public Logger(String dir){
         this.directory = dir;
-        this.buffer = ByteBuffer.allocate(Constants.BUFFER_SIZE);
-        this.tmp = new byte[Constants.BUFFER_SIZE];
+        this.buffer = ByteBuffer.allocate(1000000);
+        this.tmp = new byte[1000000];
         file = new File(directory);
         if(!file.getParentFile().exists()){
             file.getParentFile().mkdirs();

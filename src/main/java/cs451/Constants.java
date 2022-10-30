@@ -23,14 +23,7 @@ public class Constants {
     // indexes for config
     public static final int CONFIG_VALUE = 6;
 
-    // self defined
-    public static final String BROADCAST = "b";
-    public static final String DELIVER = "d";
-    public static final int SENDINTERVAL = 500;
-    public static final int BUFFER_SIZE = 1000000;
 
-    public static final boolean SEND = true;
-    public static final boolean ACK = false;
 
     public static byte[] getBytesFromObject(Serializable obj) throws Exception {
         if (obj == null) {
