@@ -50,7 +50,11 @@ public class PerfectLink implements Link{
     @Override
     public Record deliver(Record record){
         if (delivered.contains(record)) {
-            this.ack(record);
+            //this.ack(record);
+            /* 
+            Message m = new Message(record.m.payload, Constants.ACK);
+            this.stubbornLink.send(m, record.ip, record.port);
+            */
             return null;
         } else {
             delivered.add(record);
@@ -58,11 +62,12 @@ public class PerfectLink implements Link{
         return record;
     }
 
+    /* 
     public void ack(Record record){
         Message m = new Message(record.m.payload, Constants.ACK);
-//        System.out.println("send ack:" + record.i + new String(record.m.payload));
         this.stubbornLink.send(m, record.ip, record.port);
     }
+    */
 
     public void dequeue(Record record){
         stubbornLink.sent.add(record);

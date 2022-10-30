@@ -71,9 +71,9 @@ public class Main {
             perfectLink = new PerfectLink(host.getPort(), logger, parser.hosts());
             System.out.println("Broadcasting and delivering messages...\n");
             if (parser.myId() != dstid){
-                for (Integer j = 1; j <= msgnum; j++){
+                for (Integer i = 1; i <= msgnum; i++){
                     //build message
-                    Message m = new Message(j.toString().getBytes(), Constants.SEND);
+                    Message m = new Message(i.toString().getBytes(), Constants.SEND);
                     String ip_cur = parser.hosts().get(dstid - 1).getIp();
                     int port_cur = parser.hosts().get(dstid - 1).getPort();
                     perfectLink.send(m, ip_cur, port_cur);

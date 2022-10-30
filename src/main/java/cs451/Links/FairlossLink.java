@@ -28,18 +28,6 @@ public class FairlossLink implements Link{
     @Override
     public void send(Message m, String ip, int port) {
         try {
-            /* 
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();;
-            ObjectOutputStream outputStream = new ObjectOutputStream(byteArrayOutputStream);
-            outputStream.writeObject(m);
-            outputStream.flush();
-            byte[] bytes = byteArrayOutputStream.toByteArray();
-
-            ByteArrayOutputStream bo = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(bo);
-            oos.writeObject(m);
-            byte[] bytes = bo.toByteArray();
-            */
             //trasfer object to byte array
             byte[] bytes = new byte[128];
             try {
@@ -62,32 +50,12 @@ public class FairlossLink implements Link{
             socket.receive(packet);
             Object obj = Constants.deserialize(packet.getData());
             Record record = new Record((Message) obj, packet.getAddress().getHostAddress(), packet.getPort());
-	    return record;
+	        return record;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        /* 
-        try {
-            socket.receive(packet);
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream (packet.getData());
-            ObjectInputStream inputStream = new ObjectInputStream(byteArrayInputStream);
-            try{
-                Object obj = inputStream.readObject();
-                if (obj instanceof Message){
-                    Record record = new Record((Message) obj, packet.getAddress().getHostAddress(), packet.getPort());
-                    return record;
-                }
-
-            }catch (ClassNotFoundException e){
-                e.printStackTrace();
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        */
-
-        return null;//if no message has been received
+        return null;
     }
 
     @Override

@@ -29,7 +29,7 @@ public class StubbornLink implements Link, Runnable{
     public void run(){
         long start = System.currentTimeMillis();
         try {
-            Thread.sleep(Constants.SENDINTERVAL);
+            Thread.sleep(500);
         }catch (InterruptedException e){
             e.printStackTrace();
         }
@@ -40,8 +40,6 @@ public class StubbornLink implements Link, Runnable{
                     long end = System.currentTimeMillis();
                     System.out.println("execute time: " + (end - start) / 1000);
                 }
-//                System.out.println("queue size: " + queue.size());
-//                System.out.println("set size: " + sent.size());
                 if (sent.contains(record)){
                     sent.remove(record);
                     continue;
