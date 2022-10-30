@@ -2,8 +2,8 @@ package cs451.Links;
 
 import cs451.Host;
 import cs451.Constants;
-import cs451.Utils.Message;
-import cs451.Utils.Record;
+import cs451.Message;
+import cs451.Record;
 
 import java.util.HashSet;
 import java.util.List;
