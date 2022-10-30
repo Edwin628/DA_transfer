@@ -33,8 +33,6 @@ public class Listener implements Runnable {
                     String log = Constants.DELIVER + " " + process + " " + new String(record.m.payload) + "\n";
                     logger.log(log);
                 }
-            }else if(tmp.m.flag == Constants.ACK) {
-                perfectLink.dequeue(tmp);
             }
         }
     }
