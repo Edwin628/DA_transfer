@@ -26,14 +26,40 @@ public class Constants {
     // self defined
     public static final String BROADCAST = "b";
     public static final String DELIVER = "d";
-    public static final int RECEIVEINTERVAL = 5; //Interval between sending same message
+    //public static final int RECEIVEINTERVAL = 5; //Interval between sending same message
     public static final int SENDINTERVAL = 500;
     public static final int BUFFER_SIZE = 1000000;
-    public static final int BIG_NUMBER = 100000;
-    public static final int HASHSET_CAPACITY = (int)Math.pow(2,10);
-    public static final int SEND_MESSAGE = 5000;
+    //public static final int BIG_NUMBER = 100000;
+    //public static final int HASHSET_CAPACITY = (int)Math.pow(2,10);
+    //public static final int SEND_MESSAGE = 5000;
 
     public static final boolean SEND = true;
     public static final boolean ACK = false;
+
+    public static byte[] getBytesFromObject(Serializable obj) throws Exception {
+        if (obj == null) {
+          return null;
+        }
+        ByteArrayOutputStream bo = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bo);
+        oos.writeObject(obj);
+        return bo.toByteArray();
+    }
+
+    public static Object deserialize(byte[] bytes) {
+    Object object = null;
+    try {
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);//
+        ObjectInputStream ois = new ObjectInputStream(bis);
+        object = ois.readObject();
+        ois.close();
+        bis.close();
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    } catch (ClassNotFoundException ex) {
+        ex.printStackTrace();
+    }
+    return object;
+    }
 
 }

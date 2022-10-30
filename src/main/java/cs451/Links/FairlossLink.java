@@ -34,12 +34,19 @@ public class FairlossLink implements Link{
             outputStream.writeObject(m);
             outputStream.flush();
             byte[] bytes = byteArrayOutputStream.toByteArray();
-            */
-            //trasfer object to byte array
+
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(bo);
             oos.writeObject(m);
             byte[] bytes = bo.toByteArray();
+            */
+            //trasfer object to byte array
+            byte[] bytes = new byte[128];
+            try {
+                bytes = Constants.getBytesFromObject(m);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             DatagramPacket packet = new DatagramPacket(bytes, 0, bytes.length, new InetSocketAddress(ip, port));
             socket.send(packet);
         }catch (IOException e){
@@ -51,6 +58,15 @@ public class FairlossLink implements Link{
     public Record receive() {
         byte[] container = new byte[128];
         DatagramPacket packet = new DatagramPacket(container, 0, container.length);
+        try {
+            socket.receive(packet);
+            Object obj = Constants.deserialize(packet.getData());
+            Record record = new Record((Message) obj, packet.getAddress().getHostAddress(), packet.getPort());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /* 
         try {
             socket.receive(packet);
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream (packet.getData());
@@ -68,6 +84,8 @@ public class FairlossLink implements Link{
         }catch (IOException e){
             e.printStackTrace();
         }
+        */
+
         return null;//if no message has been received
     }
 
