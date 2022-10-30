@@ -25,15 +25,21 @@ public class FairlossLink implements Link{
         }
     }
 
-    /* use udp to send a packet */
     @Override
     public void send(Message m, String ip, int port) {
         try {
+            /* 
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();;
             ObjectOutputStream outputStream = new ObjectOutputStream(byteArrayOutputStream);
             outputStream.writeObject(m);
             outputStream.flush();
             byte[] bytes = byteArrayOutputStream.toByteArray();
+            */
+            //trasfer object to byte array
+            ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bo);
+            oos.writeObject(m);
+            byte[] bytes = bo.toByteArray();
             DatagramPacket packet = new DatagramPacket(bytes, 0, bytes.length, new InetSocketAddress(ip, port));
             socket.send(packet);
         }catch (IOException e){
@@ -41,8 +47,6 @@ public class FairlossLink implements Link{
         }
     }
 
-    /* receive but not deliver a packet
-     */
     @Override
     public Record receive() {
         byte[] container = new byte[128];

@@ -74,6 +74,5 @@ public class PerfectLink implements Link{
     public void close(){
         this.stubbornLink.stop();
         this.listener.stop();
-//        this.stubbornLink.close();
     }
 }

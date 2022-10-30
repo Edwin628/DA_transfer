@@ -19,7 +19,7 @@ public class Main {
         //write/flush output file if necessary
         System.out.println("Writing output.");
 
-        //logger.close();
+        logger.close();
     }
 
     private static void initSignalHandlers() {
@@ -64,8 +64,8 @@ public class Main {
         System.out.println("Doing some initialization\n");
         try{
             Scanner scan = new Scanner(new FileReader(parser.config()));
-            int msgnum = Integer.parseInt(scan.next());//how many messages each process should send
-            int dstid = Integer.parseInt(scan.next());//process should receive the messages
+            int msgnum = Integer.parseInt(scan.next());
+            int dstid = Integer.parseInt(scan.next());
             Host host = parser.hosts().get(parser.myId()-1);
             logger = new Logger(parser.output());
             perfectLink = new PerfectLink(host.getPort(), logger, parser.hosts());

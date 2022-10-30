@@ -34,7 +34,6 @@ public class Listener implements Runnable {
                     logger.log(log);
                 }
             }else if(tmp.m.flag == Constants.ACK) {
-//                System.out.println("receive ack:" + tmp.i + new String(tmp.m.payload));
                 perfectLink.dequeue(tmp);
             }
         }
