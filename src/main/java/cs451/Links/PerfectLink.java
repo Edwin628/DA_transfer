@@ -49,6 +49,8 @@ public class PerfectLink implements Link{
     @Override
     public Record deliver(Record record){
         if (delivered.contains(record)) {
+            // tell the dst listner to remove the record
+            stubbornLink.sent.add(record);
             return null;
         } else {
             delivered.add(record);

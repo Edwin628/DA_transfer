@@ -16,7 +16,6 @@ public class Main {
         perfectLink.close();
         //write/flush output file if necessary
         System.out.println("Writing output.");
-
         logger.close();
     }
 

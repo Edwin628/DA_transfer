@@ -23,7 +23,7 @@ public class StubbornLink implements Link, Runnable{
         this.fairlossLink = new FairlossLink(port, hosts);
         this.queue = new LinkedBlockingQueue<Record>();
         this.hosts = hosts;
-        this.sent = new HashSet<>();
+        // this.sent = new HashSet<>();
     }
     @Override
     public void run(){
@@ -36,10 +36,12 @@ public class StubbornLink implements Link, Runnable{
         while(flag){
             try{
                 Record record = this.queue.take();
+                /* 
                 if (queue.size() == 0) {
                     long end = System.currentTimeMillis();
                     System.out.println("execute time: " + (end - start) / 1000);
                 }
+                */
                 if (sent.contains(record)){
                     sent.remove(record);
                     continue;
