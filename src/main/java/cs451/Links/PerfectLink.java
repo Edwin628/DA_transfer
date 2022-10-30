@@ -1,10 +1,9 @@
 package cs451.Links;
 
 import cs451.Constants;
-import cs451.Utils.Listener;
-import cs451.Utils.Logger;
-import cs451.Utils.Message;
-import cs451.Utils.Record;
+import cs451.Logger;
+import cs451.Message;
+import cs451.Record;
 
 import java.util.HashSet;
 import java.util.List;
@@ -50,30 +49,12 @@ public class PerfectLink implements Link{
     @Override
     public Record deliver(Record record){
         if (delivered.contains(record)) {
-            //this.ack(record);
-            /* 
-            Message m = new Message(record.m.payload, Constants.ACK);
-            this.stubbornLink.send(m, record.ip, record.port);
-            */
             return null;
         } else {
             delivered.add(record);
         }
         return record;
     }
-
-    /* 
-    public void ack(Record record){
-        Message m = new Message(record.m.payload, Constants.ACK);
-        this.stubbornLink.send(m, record.ip, record.port);
-    }
-    */
-
-    public void dequeue(Record record){
-        stubbornLink.sent.add(record);
-    }
-
-
 
     @Override
     public void close(){

@@ -1,7 +1,7 @@
 package cs451.Links;
 
-import cs451.Utils.Message;
-import cs451.Utils.Record;
+import cs451.Message;
+import cs451.Record;
 
 public interface Link {
     public abstract void send(Message m, String ip, int port);

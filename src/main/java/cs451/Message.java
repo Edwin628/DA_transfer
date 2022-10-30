@@ -1,4 +1,4 @@
-package cs451.Utils;
+package cs451;
 
 import java.io.Serializable;
 import java.util.Arrays;

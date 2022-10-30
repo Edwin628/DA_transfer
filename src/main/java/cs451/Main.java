@@ -1,8 +1,6 @@
 package cs451;
 
 import cs451.Links.PerfectLink;
-import cs451.Utils.Logger;
-import cs451.Utils.Message;
 
 import java.io.*;
 import java.util.Scanner;

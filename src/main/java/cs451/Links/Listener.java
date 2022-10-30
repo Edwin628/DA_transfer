@@ -1,8 +1,9 @@
-package cs451.Utils;
+package cs451.Links;
 
 import cs451.Constants;
+import cs451.Logger;
+import cs451.Record;
 import cs451.Host;
-import cs451.Links.PerfectLink;
 
 import java.util.List;
 
@@ -22,17 +23,15 @@ public class Listener implements Runnable {
     public void run(){
         while(flag){
             Record tmp = perfectLink.receive();
-            if (tmp.m.flag == Constants.SEND){
-                Record record = perfectLink.deliver(tmp);
-                if (record != null) {
-                    int process = -1;
-                    for (Host host:hosts){
-                        if (host.getIp().equals(record.ip) && host.getPort() == record.port)
-                        process = host.getId();
-                    }
-                    String log = Constants.DELIVER + " " + process + " " + new String(record.m.payload) + "\n";
-                    logger.log(log);
+            Record record = perfectLink.deliver(tmp);
+            if (record != null) {
+                int process = -1;
+                for (Host host:hosts){
+                    if (host.getIp().equals(record.ip) && host.getPort() == record.port)
+                    process = host.getId();
                 }
+                String log = Constants.DELIVER + " " + process + " " + new String(record.m.payload) + "\n";
+                logger.log(log);
             }
         }
     }

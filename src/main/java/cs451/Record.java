@@ -1,4 +1,4 @@
-package cs451.Utils;
+package cs451;
 
 public class Record {
     public Message m;
