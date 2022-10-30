@@ -62,6 +62,7 @@ public class FairlossLink implements Link{
             socket.receive(packet);
             Object obj = Constants.deserialize(packet.getData());
             Record record = new Record((Message) obj, packet.getAddress().getHostAddress(), packet.getPort());
+	    return record;
         } catch (IOException e) {
             e.printStackTrace();
         }
