@@ -23,7 +23,7 @@ public class StubbornLink implements Link, Runnable{
         this.fairlossLink = new FairlossLink(port, hosts);
         this.queue = new LinkedBlockingQueue<Record>();
         this.hosts = hosts;
-        // this.sent = new HashSet<>();
+        this.sent = new HashSet<>();
     }
     @Override
     public void run(){
